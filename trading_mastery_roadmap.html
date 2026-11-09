@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Mastery — Interactive Roadmap</title>
+<style>
+:root{
+ --ink:#172033;--muted:#65718a;--bg:#f4f7ff;--card:#fff;--line:#e4e9f5;
+ --green:#00b887;--red:#ff5268;--blue:#4263eb;--purple:#8957e5;--yellow:#ffbd3d;
+ --cyan:#18b8d8;--shadow:0 12px 32px rgba(35,55,110,.09)
+}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0%,#e4f8ff 0,transparent 28%),radial-gradient(circle at 100% 10%,#f1eaff 0,transparent 25%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}
+header{padding:30px max(20px,calc((100% - 1180px)/2));background:#111a32;color:white;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;right:7%;top:-100px;width:390px;height:390px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 45px #ffffff08,0 0 0 90px #ffffff06}
+.kicker{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#7ee7cf;font-weight:800}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.05;margin:12px 0;max-width:700px}
+header p{color:#c5cee2;max-width:650px;line-height:1.65;margin-bottom:20px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}.tag{border:1px solid #ffffff35;border-radius:99px;padding:7px 11px;font-size:12px;color:#e7edff}
+main{max-width:1180px;margin:26px auto;padding:0 18px 60px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}
+.stat,.panel,.phase{background:var(--card);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}
+.stat{padding:16px}.stat small{color:var(--muted);font-weight:700}.stat strong{display:block;font-size:27px;margin-top:5px}
+.progress-wrap{height:9px;background:#e9edf7;border-radius:20px;overflow:hidden;margin-top:10px}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width .3s}
+.panel{padding:19px;margin-bottom:18px}.panel-head{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}
+h2{font-size:20px;margin:0 0 5px}.sub{color:var(--muted);font-size:13px}
+.chart-area{margin-top:16px;background:#111a32;border-radius:13px;padding:13px;overflow:hidden}
+.chart-area svg{display:block;width:100%;height:auto;min-height:170px}
+.legend{display:flex;gap:15px;color:#dce5fa;font-size:11px;margin:8px 4px 0;flex-wrap:wrap}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.phase{margin:15px 0;overflow:hidden}
+.phase-head{padding:17px 19px;display:flex;align-items:center;gap:13px;cursor:pointer}
+.phase-head:hover{background:#fafbff}.num{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;color:white;font-weight:900;flex:none}
+.phase-title{flex:1}.phase-title h3{margin:0;font-size:17px}.phase-title p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.phase-meta{font-size:12px;color:var(--muted);white-space:nowrap}.chev{font-size:20px;color:#8490a8}
+.phase-body{padding:0 19px 19px;border-top:1px solid var(--line)}
+.topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:15px}
+.topic{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fcfdff}
+.topic label{display:flex;gap:9px;align-items:flex-start;cursor:pointer;font-weight:750;font-size:13px}
+.topic input{accent-color:#00b887;width:17px;height:17px;margin:0;flex:none}
+.topic p{font-size:12px;color:var(--muted);line-height:1.5;margin:7px 0 0 26px}
+.resources{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.resources a{font-size:12px;color:#3556d8;text-decoration:none;background:#eef2ff;padding:8px 10px;border-radius:8px;font-weight:700}
+.resources a:hover{background:#dfe6ff}
+.tip{margin-top:14px;padding:12px 14px;border-radius:10px;background:#fff8e7;color:#76500b;font-size:12px;line-height:1.55}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:13px}
+.tool{border-radius:13px;padding:14px;background:#f7f8ff;border:1px solid var(--line)}
+.tool b{display:block;margin-bottom:5px}.tool span{font-size:12px;color:var(--muted);line-height:1.5}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:25px}
+button{border:0;border-radius:9px;padding:9px 12px;background:#edf1ff;color:#3556d8;font-weight:800;cursor:pointer}
+button:hover{filter:brightness(.97)}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.topic-grid,.tools{grid-template-columns:1fr}.phase-meta{display:none}header{padding:27px 20px}}
+@media print{body{background:white}.phase-body{display:block!important}.phase{break-inside:avoid}.panel,.stat,.phase{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+ <div class="kicker">Your learning command center · beginner to confident trader</div>
+ <h1>Trading <span style="color:#67e4c5">Mastery</span> Roadmap</h1>
+ <p>Read the market before you trade it. Build strong chart-reading skills, understand candlestick behaviour, master indicators, practise risk management, then learn to evaluate businesses through fundamental analysis.</p>
+ <div class="hero-tags"><span class="tag">🕯️ Candlestick-first</span><span class="tag">📈 Technical analysis</span><span class="tag">🧠 Learn by practice</span><span class="tag">🛡️ Risk-first mindset</span></div>
+</header>
+<main>
+ <section class="stats">
+  <div class="stat"><small>OVERALL COMPLETION</small><strong id="percent">0%</strong><div class="progress-wrap"><div class="progress" id="bar"></div></div></div>
+  <div class="stat"><small>TOPICS COMPLETED</small><strong id="done">0 / 0</strong><span class="sub">Tick topics as you learn</span></div>
+  <div class="stat"><small>LEARNING STAGES</small><strong>7</strong><span class="sub">From chart basics to fundamentals</span></div>
+  <div class="stat"><small>RECOMMENDED PACE</small><strong>12 weeks</strong><span class="sub">About 5–7 focused hours/week</span></div>
+ </section>
+
+ <section class="panel">
+  <div class="panel-head"><div><h2>🕯️ Read a candlestick chart</h2><div class="sub">Illustrative candles — learn open, high, low, close and market direction.</div></div><button onclick="window.print()">Print roadmap</button></div>
+  <div class="chart-area">
+   <svg viewBox="0 0 900 230" role="img" aria-label="Illustrative green and red candlestick chart">
+    <g stroke="#33405d" stroke-width="1"><path d="M20 35H880M20 80H880M20 125H880M20 170H880M20 215H880"/></g>
+    <g fill="#8390aa" font-size="11"><text x="25" y="25">PRICE ↑</text><text x="25" y="226">TIME →</text></g>
+    <g stroke-width="3">
+     <path d="M95 65V170" stroke="#00d6a0"/><rect x="84" y="95" width="22" height="43" rx="2" fill="#00d6a0"/>
+     <path d="M165 55V150" stroke="#ff6377"/><rect x="154" y="78" width="22" height="48" rx="2" fill="#ff6377"/>
+     <path d="M235 75V190" stroke="#00d6a0"/><rect x="224" y="105" width="22" height="55" rx="2" fill="#00d6a0"/>
+     <path d="M305 45V145" stroke="#00d6a0"/><rect x="294" y="65" width="22" height="53" rx="2" fill="#00d6a0"/>
+     <path d="M375 35V120" stroke="#ff6377"/><rect x="364" y="55" width="22" height="43" rx="2" fill="#ff6377"/>
+     <path d="M445 70V185" stroke="#ff6377"/><rect x="434" y="90" width="22" height="65" rx="2" fill="#ff6377"/>
+     <path d="M515 60V165" stroke="#00d6a0"/><rect x="504" y="95" width="22" height="48" rx="2" fill="#00d6a0"/>
+     <path d="M585 30V120" stroke="#00d6a0"/><rect x="574" y="48" width="22" height="45" rx="2" fill="#00d6a0"/>
+     <path d="M655 20V110" stroke="#ff6377"/><rect x="644" y="38" width="22" height="53" rx="2" fill="#ff6377"/>
+     <path d="M725 45V150" stroke="#00d6a0"/><rect x="714" y="78" width="22" height="50" rx="2" fill="#00d6a0"/>
+     <path d="M795 25V95" stroke="#00d6a0"/><rect x="784" y="40" width="22" height="37" rx="2" fill="#00d6a0"/>
+    </g>
+    <g fill="#dce5fa" font-size="11"><text x="820" y="50">Higher close</text><text x="820" y="190">Lower price</text></g>
+   </svg>
+   <div class="legend"><span><i class="dot" style="background:#00d6a0"></i>Bullish candle</span><span><i class="dot" style="background:#ff6377"></i>Bearish candle</span><span>Wick = high/low range</span></div>
+  </div>
+ </section>
+
+ <div class="panel">
+  <h2>How to use this roadmap</h2>
+  <div class="sub">Complete the stages in order. Each checkbox updates your progress automatically in this page.</div>
+  <div class="tip">⚠️ Education only, not investment advice. Candlestick patterns and indicators are probabilities, not guarantees. Practise with historical charts and a paper-trading account before risking real money. Avoid leverage until you understand the risks.</div>
+ </div>
+
+ <div id="phases"></div>
+
+ <section class="panel">
+  <h2>🧰 Your chart-reading toolkit</h2>
+  <div class="tools">
+   <div class="tool"><b>TradingView</b><span>Use charts, drawing tools, indicators and replay mode to practise reading price action.</span><div class="resources"><a href="https://www.tradingview.com/" target="_blank">Open TradingView ↗</a></div></div>
+   <div class="tool"><b>Chart practice</b><span>Pick liquid stocks or index ETFs. Mark support/resistance before revealing what happened next.</span><div class="resources"><a href="https://www.investopedia.com/" target="_blank">Investopedia ↗</a></div></div>
+   <div class="tool"><b>Trading journal</b><span>Record setup, entry reason, stop, target, risk, outcome and lesson. Review weekly.</span><div class="resources"><a href="https://www.notion.so/" target="_blank">Notion ↗</a></div></div>
+  </div>
+ </section>
+ <div class="footer">Built for deliberate practice · Learn the setup, test it, journal it, review it.</div>
+</main>
+<script>
+const phases=[
+{title:"Chart Foundations",time:"Week 1 · 5–7 hours",color:"#4263eb",desc:"Understand what the chart is showing before adding indicators.",topics:[
+["Market basics","Stocks, exchanges, indices, ETFs, brokers, bid/ask spread, liquidity and market sessions."],
+["Chart types","Candlestick, line, bar and Heikin-Ashi charts. Know when each is useful."],
+["Timeframes","1m, 5m, 15m, 1h, 4h, daily and weekly charts; multi-timeframe context."],
+["OHLC and candle anatomy","Open, High, Low, Close; candle body, upper wick, lower wick and range."],
+["Volume basics","Volume bars, average volume, relative volume and why liquidity matters."],
+["Chart setup","Price scale, log vs linear, watchlists, crosshair, sessions and clean chart layouts."]]},
+{title:"Candlestick Patterns",time:"Weeks 2–3 · 10–12 hours",color:"#00b887",desc:"Learn the story behind each candle and confirm patterns with context.",topics:[
+["Single-candle patterns","Doji, hammer, hanging man, shooting star, inverted hammer, marubozu and spinning top."],
+["Two-candle patterns","Bullish/bearish engulfing, piercing line, dark cloud cover, harami and tweezer tops/bottoms."],
+["Three-candle patterns","Morning star, evening star, three white soldiers, three black crows and inside-bar sequences."],
+["Context and confirmation","Trend location, support/resistance, volume, candle close and false signals."],
+["Pattern recognition drills","Find 20 historical examples of each major pattern; label valid and weak examples."],
+["Build a pattern playbook","Screenshot setup, context, confirmation, invalidation and outcome."]]},
+{title:"Price Action & Chart Patterns",time:"Weeks 4–5 · 10–12 hours",color:"#8957e5",desc:"Read structure, trends and areas where buyers and sellers react.",topics:[
+["Market structure","Higher highs/lows, lower highs/lows, trend, range, break of structure and change of character."],
+["Support and resistance","Horizontal zones, role reversal, round numbers and avoiding overly precise lines."],
+["Trendlines and channels","Drawing valid swing-based trendlines, ascending/descending channels and channel breaks."],
+["Classic patterns","Head and shoulders, inverse H&S, double top/bottom, triple top/bottom."],
+["Continuation patterns","Triangles, flags, pennants, rectangles, wedges and measured moves."],
+["Breakouts and retests","Breakout quality, volume confirmation, failed breakouts, fakeouts and retest entries."]]},
+{title:"Technical Indicators",time:"Weeks 6–7 · 12–14 hours",color:"#ff9f1c",desc:"Use indicators as supporting evidence — not as automatic buy/sell signals.",topics:[
+["Moving averages","SMA vs EMA; 9/20/50/100/200 EMA/SMA, slope, crossovers and dynamic support."],
+["RSI","Momentum, 70/30 zones, 50 level, divergences and why overbought is not an automatic sell."],
+["MACD","MACD line, signal line, histogram, zero-line crosses and divergence."],
+["Bollinger Bands","Middle band, upper/lower bands, squeeze, expansion and mean reversion context."],
+["VWAP and volume tools","VWAP, anchored VWAP, volume profile concepts, OBV and relative volume."],
+["ATR and volatility","Average True Range, volatility regimes, stop distance and position sizing."],
+["Indicator confluence","Combine price structure + volume + one or two indicators; avoid indicator overload."]]},
+{title:"Trading Plans, Risk & Backtesting",time:"Weeks 8–9 · 10–12 hours",color:"#ef5572",desc:"Protect capital, define rules and test a strategy before using real money.",topics:[
+["Trade plan","Market, timeframe, setup, trigger, entry, stop-loss, target and invalidation."],
+["Risk/reward","R-multiples, expected value, win rate, payoff ratio and drawdown."],
+["Position sizing","Calculate quantity from account risk and stop distance; understand gaps and slippage."],
+["Trade management","Partial exits, trailing stops, time stops and avoiding impulsive changes."],
+["Backtesting","Define objective rules, test many examples, include costs and avoid hindsight bias."],
+["Paper trading","Complete at least 30–50 logged paper trades; review rule-following, not just profit."]]},
+{title:"Fundamental Analysis",time:"Weeks 10–11 · 8–10 hours",color:"#18b8d8",desc:"Shift from chart behaviour to business quality, financial health and valuation.",topics:[
+["Business understanding","Revenue model, products, customers, competitive advantage and industry structure."],
+["Income statement","Revenue, gross profit, operating income, net income, EPS and margins."],
+["Balance sheet","Assets, liabilities, equity, cash, debt, working capital and liquidity."],
+["Cash flow statement","Operating, investing and financing cash flows; free cash flow."],
+["Key ratios","P/E, P/S, PEG, ROE, ROIC, debt/equity, current ratio and EV/EBITDA."],
+["Valuation and research","Growth assumptions, comparable companies, DCF basics, risks and management quality."]]},
+{title:"Capstone: Build Your Own Process",time:"Week 12 · 5–7 hours",color:"#172033",desc:"Bring technical and fundamental analysis together into a repeatable research process.",topics:[
+["Create a watchlist","Select 5–10 liquid companies or ETFs and write why each is worth studying."],
+["Top-down analysis","Market/sector context, company fundamentals, daily trend and lower-timeframe setup."],
+["Write a trading thesis","Bull case, bear case, catalysts, invalidation, entry plan and risk limits."],
+["Review performance","Summarise journal data, mistakes, best setups and next month's learning goals."]]}
+];
+const root=document.getElementById('phases');
+phases.forEach((p,i)=>{
+ const el=document.createElement('section');el.className='phase';
+ const topics=p.topics.map((t,j)=>`<div class="topic"><label><input type="checkbox" data-id="${i}-${j}"><span>${t[0]}</span></label><p>${t[1]}</p></div>`).join('');
+ el.innerHTML=`<div class="phase-head" role="button" tabindex="0" aria-expanded="true"><div class="num" style="background:${p.color}">${String(i+1).padStart(2,'0')}</div><div class="phase-title"><h3>${p.title}</h3><p>${p.desc}</p></div><div class="phase-meta">${p.time}</div><div class="chev">⌄</div></div><div class="phase-body"><div class="topic-grid">${topics}</div>${i===1?'<div class="tip">Practice rule: never memorise a candle name alone. Ask: where did it form, what was the prior trend, and did the next candle confirm it?</div>':''}${i===3?'<div class="tip">Keep the chart simple: start with price + volume, then add one trend tool and one momentum/volatility tool. Indicators often repeat the same information.</div>':''}</div>`;
+ const head=el.querySelector('.phase-head');head.addEventListener('click',()=>{const body=el.querySelector('.phase-body');body.hidden=!body.hidden;head.setAttribute('aria-expanded',String(!body.hidden));head.querySelector('.chev').textContent=body.hidden?'›':'⌄'});
+ head.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();head.click()}});
+ root.appendChild(el);
+});
+const checks=[...document.querySelectorAll('input[type=checkbox]')];
+function update(){const n=checks.filter(c=>c.checked).length,total=checks.length,p=Math.round(n/total*100);document.getElementById('percent').textContent=p+'%';document.getElementById('done').textContent=n+' / '+total;document.getElementById('bar').style.width=p+'%';}
+checks.forEach(c=>c.addEventListener('change',update));update();
+</script>
+</body></html>
